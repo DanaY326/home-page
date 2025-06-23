@@ -1,9 +1,117 @@
 import Image from "next/image";
+import "tailwindcss";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    [
+      <nav className="bg-black" key = "n">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between">
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="hidden sm:ml-6 sm:block">
+                <div className="flex space-x-4 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <a href="#" className="py-2 gap-0 font-large text-white">Google DeepMind</a>
+                  <div className="absolute flex items-center sm:visible inline-block">
+                    <div className="">
+                      <div>
+                        <button
+                          type="button"
+                          className="flex items-center block rounded-xl px-1 py-0.5 text-base text-neutral-200 font-medium text-white outline-1 outline-offset-2 outline-solid outline-neutral-700" 
+                          id="menu-button" 
+                          aria-expanded="true" 
+                          aria-haspopup="true"
+                        >
+                          <Image
+                            className="dark:invert"
+                            src="/down-arrow.png"
+                            alt="Down Arrow"
+                            width={10}
+                            height={10}
+                          />
+                        </button>
+                      </div>
+                      <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
+                        <div className="py-1" role="none">
+                          <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="menu-item-0">Account settings</a>
+                          <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="menu-item-1">Support</a>
+                          <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="menu-item-2">License</a>
+                          <form method="POST" action="#" role="none">
+                            <button type="submit" className="block w-full px-4 py-2 text-left text-sm text-gray-700" role="menuitem" tabIndex="-1" id="menu-item-3">Sign out</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-800">Models</a>
+                  <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-800">Research</a>
+                  <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-800">Stories</a>
+                  <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-800">About</a>
+                </div>
+              </div>
+            </div>
+            <div className="absolute inset-y-0 right-0 gap-1 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              
+                  <a
+                    className="flex items-center gap-2 block rounded-4xl px-3 py-2 text-base font-xl text-neutral-400 bg-neutral-900 hover:bg-neutral-800"
+                    href="https://aistudio.google.com/prompts/new_chat?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      className="dark:invert"
+                      src="/google-ai-studio.svg"
+                      alt="Google AI Studio icon"
+                      width={20}
+                      height={20}
+                    />
+                    Try Google AI Studio
+                  </a>
+                  <a
+                    className="flex items-center gap-2 block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 bg-neutral-900 hover:bg-neutral-800"
+                    href="https://gemini.google.com/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      className="dark:invert"
+                      src="/gemini.svg"
+                      alt="Gemini logomark"
+                      width={20}
+                      height={20}
+                    />
+                    Try Gemini
+                  </a>
+                  <a
+                    className="flex items-center gap-2 block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 bg-neutral-900 hover:bg-neutral-800"
+                    href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      className="dark:invert"
+                      src="/search.png"
+                      alt="Search icon"
+                      width={20}
+                      height={20}
+                    />
+                  </a>
+              </div>
+          </div>
+        </div>
+
+  <div className="sm:hidden" id="mobile-menu">
+    <div className="space-y-1 px-2 pt-2 pb-3">
+      <a href="#" className="block rounded-4xl bg-neutral-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Google DeepMind</a>
+      <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-700 hover:text-white">Models</a>
+      <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-700 hover:text-white">Research</a>
+      <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-700 hover:text-white">Stories</a>
+      <a href="#" className="block rounded-4xl px-3 py-2 text-base font-medium text-neutral-400 hover:bg-neutral-700 hover:text-white">About</a>
+    </div>
+  </div>
+</nav>,
+    <div key = "m" className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -51,53 +159,7 @@ export default function Home() {
           </a>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
+    ]
   );
 }
