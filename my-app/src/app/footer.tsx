@@ -2,41 +2,6 @@
 import Image from "next/image";
 import "tailwindcss";
 
-export interface List {
-  title: string;
-  subtitle?: string;
-  children?: ListItem[];
-}
-
-export interface ListItem {
-  image?: typeof Image;
-  title: string;
-}
-
-const menuItems: MenuItem[] = [
-  {
-    title: "Home",
-    route: "/",
-  },
-  {
-    title: "Products",
-    children: [
-      {
-        title: "Hinkle Horns",
-        route: "/products/hinkle-horns",
-      },
-      {
-        title: "Doozers",
-        route: "/products/doozers",
-      },
-      {
-        title: "Zizzer-zazzers",
-        route: "/products/zizzer-zazzers",
-      },
-    ],
-  },
-];
-
 export default function Footer() {
     return (
         <footer className="bg-black max-w-full mx-7 md:mx-20">
@@ -217,61 +182,61 @@ export default function Footer() {
                     </ul>
                 </div>
                 
-                <div className="mb-6 md:mb-12 md:h-60 sm:w-max-50% mr-5 md:w-max-30% text-neutral-400 sm:col-start-2 sm:row-start-4 md:col-start-3 md:row-start-2">
-                <p className="mb-3 md:mb-4 text-sm">
-                    Sign up for updates on our latest innovations
-                </p>
-                <p className="mb-3 md:mb-4 text-xs">I accept Google's Terms and Conditions and acknowledge that my information will be used in accordance with &nbsp;
-                    <a href="https://policies.google.com/privacy" target="_blank" className="underline hover:no-underline">
-                    Google's privacy policy
-                    </a>
-                    .
-                </p>
-                <form className="w-full p-0">
-                    <div className="flex items-center block rounded-4xl bg-neutral-900 px-4 py-2">
-                    <input className="appearance-none bg-transparent border-none w-full text-neutral-200 mr-3 px-2 sm:text-sm leading-tight focus:outline-none" type="text" placeholder="Email address" aria-label="Full name"></input>
-                    <button className="flex-shrink-0 border-transparent border-4 text-white text-sm py-1 px-2 rounded" type="button">
-                        <Image
-                        className=""
-                        src="/right-arrow.png"
-                        alt="Go"
-                        width={10}
-                        height={10}
-                        />
-                    </button>
-                    </div>
-                </form>
+                <div className="mb-6 mr-15 md:mb-12 md:h-60 sm:w-max-50% mr-5 md:w-max-30% text-neutral-400 sm:col-start-2 sm:row-start-4 md:col-start-3 md:row-start-2">
+                    <p className="mb-3 md:mb-4 mr-10 text-sm">
+                        Sign up for updates on our latest innovations
+                    </p>
+                    <p className="mb-3 md:mb-4 text-xs">I accept Google's Terms and Conditions and acknowledge that my information will be used in accordance with &nbsp;
+                        <a href="https://policies.google.com/privacy" target="_blank" className="underline hover:no-underline">
+                        Google's privacy policy
+                        </a>
+                        .
+                    </p>
+                    <form className="w-full p-0">
+                        <div className="flex items-center block rounded-4xl bg-neutral-900 px-4 py-2">
+                        <input className="appearance-none bg-transparent border-none w-full text-neutral-200 mr-3 px-2 sm:text-sm leading-tight focus:outline-none" type="text" placeholder="Email address" aria-label="Full name"></input>
+                        <button className="flex-shrink-0 border-transparent border-4 text-white text-sm py-1 px-2 rounded" type="button">
+                            <Image
+                            className=""
+                            src="/right-arrow.png"
+                            alt="Go"
+                            width={10}
+                            height={10}
+                            />
+                        </button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div className="relative block w-100% mx-auto max-w-full py-8 flex gap-0 z-0 justify-left items-centre flex-col sm:flex-row outline-1 outline-offset-2 outline-solid outline-neutral-700">
-                <a className="text-gray-400 ml-10 md:ml-20 text-2xl sm:text-center"
-                href="https://www.google.com/"
-                target="_blank" >
-                Google
+            <div className="relative block w-100% mx-0 max-w-full py-8 flex gap-0 z-0 justify-left items-centre flex-col md:flex-row border-t-1 border-solid border-neutral-700">
+                <a className="text-gray-400 ml-10 mb-10 md:mb-0 md:ml-20 justify-left text-2xl md:text-center"
+                    href="https://www.google.com/"
+                    target="_blank" >
+                    Google
                 </a>
-                <div className="text-gray-400 ml-10 md:ml-20 font-thin flex gap-6 text-lg flex-col sm:flex-row">
-                <a className="sm:text-center"
+                <div className="text-gray-400 ml-10 md:ml-20 font-thin flex gap-6 text-lg flex-col md:flex-row">
+                <a className="md:text-center"
                     href="https://about.google/" 
                     target="_blank" >
                     About Google
                 </a>
-                <a className="sm:text-center"
+                <a className="md:text-center"
                     href="https://about.google/products/" 
                     target="_blank" >
                     Google products
                 </a>
-                <a className="sm:text-center"
+                <a className="md:text-center"
                     href="https://policies.google.com/privacy" 
                     target="_blank" >
                     Privacy
                 </a>
-                <a className="sm:text-center"
+                <a className="md:text-center"
                     href="https://policies.google.com/terms" 
                     target="_blank" >
                     Terms
                 </a>
-                <a className="sm:text-center"
+                <a className="md:text-center"
                     href="https://google.com" 
                     target="_blank" >
                     Manage cookies
