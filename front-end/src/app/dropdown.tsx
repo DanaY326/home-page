@@ -25,7 +25,7 @@ export default function Dropdown(props: Props) {
         "hidden";
 
     return (
-        <div className="flex p-0 flex-1 items-center justify-centre gap-2">
+        <div className="flex p-0 items-center gap-2">
                 <a href="#" className="gap-0 visible text-white z-50 static inset-auto pr-0 pl-8"><span className="text-md">{item.company}</span> <span className="text-lg">{item.division}</span></a>
                 <button
                     className="flex items-center block rounded-xl px-1 py-0.5 z-50 cursor-pointer outline-1 outline-offset-2 outline-solid outline-neutral-700" 
@@ -33,7 +33,8 @@ export default function Dropdown(props: Props) {
                     onMouseOver={isOpen ? toggle : ()=>null}
                 >
                     {
-                        isOpen ?
+                        isOpen 
+                        ?
                         <Image
                             src="/up-arrow.png"
                             alt="Up Arrow"
@@ -65,13 +66,13 @@ export default function Dropdown(props: Props) {
                 </div>
                 {
                     isOpen
-                        ?
-                        <div
-                            className="fixed top-0 right-0 bottom-0 left-0 z-0 bg-transparent"
-                            onClick={toggle}
-                        ></div>
-                        :
-                        <></>
+                    ?
+                    <div
+                        className="fixed top-0 right-0 bottom-0 left-0 z-0 bg-transparent"
+                        onClick={toggle}
+                    ></div>
+                    :
+                    <></>
                 }
         </div>
     )

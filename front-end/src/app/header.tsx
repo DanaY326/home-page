@@ -292,7 +292,7 @@ const hoverItems: HoverItem[] = [
       },
     ],
   },
-];
+]
 
 const buttonItems: ButtonItem[] = [
   {
@@ -388,14 +388,18 @@ export default function Header() {
        window.removeEventListener('scroll', controlNavbar);
     };
   }, [lastScrollY]);
+
   return (
-        <nav className={`fixed bg-black z-20 ${lastScrollY == 0 ? "outline-0" : "outline-1"} outline-solid outline-neutral-800 w-full max-w-full ${show ? "visible" : "hidden"}`}>
+      <nav className={`fixed bg-black z-20 ${lastScrollY == 0 ? "outline-0" : "outline-1"} outline-solid outline-neutral-800 w-full max-w-full ${show ? "visible" : "hidden"}`}>
+        <div className="md:hidden">
+          <Mobile items={hoverItems}/>
+        </div>
         <div className="mx-7 w-full px-2 px-6 md:px-8">
           <div className="relative flex h-16 items-center text-left justify-between gap-1 mr-10">
-            <div className="flex flex-1 items-center justify-left md:items-stretch">
+            <div className="flex flex-1 items-center justify-left">
               <Dropdown item={maindropdown}/>
               <div className="hidden lg:block">
-                <div className="flex inset-y-0 left-0 pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+                <div className="flex inset-y-0 px-3 left-0 md:static md:inset-auto md:ml-6 md:pr-0">
                   {hoverItems.map((item, i) => {
                     return (
                       <Hover item={item} key={i}/>
@@ -416,7 +420,6 @@ export default function Header() {
             <Button item={searchButton}/>
           </div>
         </div>
-      <Mobile />
     </nav>
   );
 }
