@@ -45,7 +45,7 @@ export default function Mobile(props: Props) {
                         <MobileItem item={item} key={i}/>
                     );
                 })}
-                <div className='my-30'>
+                <div className='my-30 visible md:hidden'>
                     {buttonItems.map((item, i) => {
                         return (
                             <MobileButton item={item} key={i}/>
