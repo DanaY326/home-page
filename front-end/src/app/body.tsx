@@ -217,102 +217,96 @@ export default function Body() {
         setIsLeft(() => false);
     }
 
-    return (
-      <main className="flex flex-col gap-[32px] row-start-2 py-10 items-center sm:items-start">
-        <div className="h-screen flex mb-20">
-            <div className="w-1/2">
-                <BigArticle item={highlightedArticle}/>
-            </div>
-            <div className="flex-1 flex overflow-hidden w-1/2 scrollbar-hidden">
-                <div className="flex-1 overflow-y-scroll scrollbar-hidden">
+    return ( 
+      <div className="grid grid-rows-[20px_1fr_20px] items-center max-w-full justify-items-center min-h-screen p-6 gap-16 lg:p-20 font-[family-name:var(--font-montserrat)]">
+        <main className="flex flex-col row-start-2 py-10 items-center sm:items-start">
+            <div className="md:grid md:grid-cols-2 min-h-screen mb-20">
+                <div className="md:sticky md:top-0 col-span-1 h-screen mb-30">
+                    <BigArticle item={highlightedArticle}/>
+                </div>
+                <div className="col-span-1 clear-both">
                     {topArticles.map((item, i) => {
                         return (
                             <>  
+                                {i != 0 ? <hr className="h-0.5 border-t-0 bg-neutral-900 my-10" /> : <></>}
                                 <ArticleBlock item={item} key={i}/>
-                                <hr className="h-0.5 border-t-0 bg-neutral-900 my-10" />
                             </>
                         );
                     })}
                 </div>
             </div>
-        </div>
-        <hr className="w-full h-0.5 my-20 border-t-0 bg-neutral-900" />
-        <div className='w-full h-fit flow-root'>
-            <div className='text-4xl float-left'>Start building</div>
-            <a
-                className="block rounded-4xl w-fit float-right h-max-6 flex gap-4 items-centre cursor-pointer outline-1 outline-solid outline-neutral-700 row-flex px-3.5 py-1.5 text-sm text-neutral-400 bg-neutral-900"
-                href="https://deepmind.google/models/"
-            >
-                View models
-                <Image
-                    className="h-3 mt-1 w-2 items-centre"
-                    src ="/right-arrow.png"
-                    alt="Right arrow"
-                    width={6}
-                    height={2}
-                />
-            </a>
-        </div>
-        <div className='md:grid md:grid-cols-4 grid-row-flow gap-4 auto-rows-fr my-10'>
-            {isLeft
-            ?
-            models.slice(-1).map((item, i) => {
-                return (
-                    <>  
-                        <hr className="w-full h-0.5 my-20 border-t-0 bg-neutral-900" />
-                        <Model item={item} key={i}/>
-                    </>
-                );
-            })
-            :
-            models.slice(1).map((item, i) => {
-                return (
-                    <>  
-                        <Model item={item} key={i}/>
-                    </>
-                );
-            })}            
-        </div>
-        <div className='flex items-center gap-2 block rounded-4xl px-1 py-1 text-sm text-neutral-400 bg-neutral-900 hover:bg-neutral-800 w-fit'>
-            <button
-                className={`flex items-center gap-2 block rounded-4xl px-4 py-2 text-sm text-neutral-400 ${isLeft ? 'cursor-not-allowed bg-neutral-700' : 'cursor-pointer bg-neutral-900'}`} 
-                onClick={left}
-            >
-                {
+            <hr className="w-full clear-both h-0.5 mt-20 mb-10 border-t-0 bg-neutral-900" />
+            <div className='w-full h-fit flow-root'>
+                <div className='text-4xl float-left'>Start building</div>
+                <a
+                    className="block rounded-4xl w-fit float-right h-max-6 flex gap-4 items-centre cursor-pointer outline-1 outline-solid outline-neutral-700 row-flex px-3.5 py-1.5 text-sm text-neutral-400 bg-neutral-900"
+                    href="https://deepmind.google/models/"
+                >
+                    View models
                     <Image
-                        src="/left-arrow.png"
-                        alt="Left Arrow"
-                        width={10}
-                        height={10}
+                        className="h-3 mt-1 w-2 items-centre"
+                        src ="/right-arrow.png"
+                        alt="Right arrow"
+                        width={6}
+                        height={2}
                     />
-                }
-                
-            </button>
-            <button
-                className="flex items-center gap-2 block rounded-4xl px-3 py-2 text-sm text-neutral-400 ${isLeft ? 'cursor-pointer bg-neutral-900' : 'cursor-not-allowed bg-neutral-700'}" 
-                onClick={right}
-            >
-                {
-                    <Image
-                        src="/right-arrow.png"
-                        alt="Right Arrow"
-                        width={10}
-                        height={10}
-                    />
-                }
-                
-            </button>
-        </div>
-        <div className="md:grid md:grid-cols-2 grid-row-flow auto-rows-fr">
-            {researchArticles.map((item, i) => {
-                return (
-                    <div className='py-10 px-10'>  
-                        <ArticleBlock item={item} key={i}/>
-                        {i % (topArticles.length / 2 ) != topArticles.length / 2 ? <hr className="h-0.5 border-t-0 bg-neutral-900 my-10" /> : <></>}
+                </a>
+            </div>
+            <div className=''>
+                <div className='md:grid md:grid-cols-4 gap-4 mt-10 my-10 clear-end my-80'>
+                    {models.slice(isLeft ? 0 : 1, isLeft ? -1 : models.length).map((item, i) => {
+                        return (
+                            <>  
+                                <Model item={item} key={i}/>
+                            </>
+                        );
+                    })}            
+                </div>
+                <div className='clear-both hidden md:flex'>
+                    <div className='flex items-center gap-2 block rounded-4xl px-1 py-1 clear-both text-sm text-neutral-400 bg-neutral-900 hover:bg-neutral-800 w-fit'>
+                        <button
+                            className={`flex items-center gap-2 block rounded-4xl px-4 py-2 text-sm text-neutral-400 ${isLeft ? 'cursor-not-allowed bg-neutral-700' : 'cursor-pointer bg-neutral-900'}`} 
+                            onClick={left}
+                        >
+                            {
+                                <Image
+                                    src="/left-arrow.png"
+                                    alt="Left Arrow"
+                                    width={10}
+                                    height={10}
+                                />
+                            }
+                            
+                        </button>
+                        <button
+                            className={`flex items-center gap-2 block rounded-4xl px-4 py-2 text-sm text-neutral-400 ${isLeft ? 'cursor-pointer bg-neutral-900' : 'cursor-not-allowed bg-neutral-700'}`} 
+                            onClick={right}
+                        >
+                            {
+                                <Image
+                                    src="/right-arrow.png"
+                                    alt="Right Arrow"
+                                    width={10}
+                                    height={10}
+                                />
+                            }
+                            
+                        </button>
                     </div>
-                );
-            })}
-        </div>
-    </main>
+                </div>
+            </div>
+            <hr className="h-0.5 bg-neutral-900 my-10"/>
+            <div className="md:grid md:grid-cols-2 gap-10 grid-flow-row auto-rows-fr flex flex-wrap">
+                {researchArticles.map((item, i) => {
+                    return (
+                        <div className=''>  
+                            {i >= 2 ? <hr className="h-0.5 border-t-0 bg-neutral-900 mb-10" /> : <></>}
+                            <ArticleBlock item={item} key={i}/>
+                        </div>
+                    );
+                })}
+            </div>
+        </main>
+    </div>
   );
 }
