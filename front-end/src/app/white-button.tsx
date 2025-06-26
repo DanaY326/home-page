@@ -22,11 +22,12 @@ export default function WhiteButton(bt : ButtonText) {
     }
 
     return (
-        <button className="block flex gap-2 text-sm transition z-10 ease-in-out duration-300 hover:text-white hover:text-bold"
-                onMouseOver={open}>
+        <button className="block flex gap-2 text-sm transition ease-in-out duration-300 hover:text-white hover:text-bold"
+                onMouseOver={open}
+                onMouseLeave={close}>
             {text}
             <Image
-                className="h-3 mt-1 w-2 items-centre"
+                className="h-3 w-2 mt-1 items-centre"
                 src ={isOpen ? "/right-arrow-white.png" : "/right-arrow.png"}
                 alt="Right arrow"
                 width={6}

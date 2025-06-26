@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import WhiteButton  from "./white-button";
+import BigArticle from "./big-article";
 
 import { Article } from './body';
 
@@ -15,21 +16,32 @@ export default function ArticleBlock(props: Props) {
 
     return (
         <a
-            className="flex items-center gap-2 block rounded-4xl h-30 px-3 w-full max-w-full"
+            className="md:flex items-start lg:items-center gap-2 block rounded-4xl h-fit mt-10 px-3 w-full max-w-full"
             href={item.link}
             target={"_blank"}
             rel="noopener noreferrer"
         >
-            <div className="flex-col items-top mr-4">
+            <div className="flex-col items-top lg:mr-4 mb-4">
                 <p className="text-2xl text-white mb-4">{item.title}</p>
-                <div className="flex p-0 items-center gap-5 text-sm mb-2 text-neutral-500 w-fit">
-                    <span className="w-fit">{item.date}</span>
-                    <span>{item.topic}</span>
+                <div className="flex sm:flex-col lg:hidden justify-left gap-5 md:gap-5 text-sm text-neutral-500 w-fit">
+                    <div className="flex items-center gap-5">
+                        <span className="w-fit">{item.date}</span>
+                        <span>{item.topic}</span>
+                    </div>
                     <WhiteButton text="Learn more"/>
+                </div>
+                <div className="hidden lg:flex lg:items-center gap-5 md:gap-5 text-sm text-neutral-500 w-fit">
+                    <div className="flex items-center gap-5">
+                        <span className="w-fit">{item.date}</span>
+                        <span>{item.topic}</span>
+                    </div>
+                    <div>   
+                        <WhiteButton text="Learn more"/>
+                    </div>
                 </div>
             </div>
             <Image
-                className="w-1/3 rounded-4xl max-width-full max-height-full"
+                className="w-full md:w-3/10 rounded-2xl max-width-full max-height-full"
                 src={item.image}
                 alt="Image"
                 height={1000}
