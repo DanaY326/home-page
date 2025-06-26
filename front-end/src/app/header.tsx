@@ -405,7 +405,7 @@ export default function Header() {
           <div className="relative flex h-16 items-center text-left justify-between gap-1 mr-10">
             <div className="flex flex-1 items-center justify-left">
               <div className="lg:hidden">
-                
+                <Mobile items={mobileItems}/>
               </div>
               <Dropdown item={maindropdown}/>
               <div className="hidden lg:block">
