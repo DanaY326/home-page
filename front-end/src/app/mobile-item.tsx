@@ -17,14 +17,6 @@ export default function MobileItem(props: Props) {
         setIsOpen(old => !old);
     }
 
-    const open = () => {
-        setIsOpen(() => true);
-    }
-
-    const close = () => {
-        setIsOpen(() => false);
-    }
-
     const transClass = isOpen
         ?
         "flex"
@@ -32,82 +24,50 @@ export default function MobileItem(props: Props) {
         "hidden";
 
     return (
-        <>
-            <div>
-                    <button
-                            className={`block rounded-4xl px-3 py-2 text-sm text-neutral-400 transition z-10 ease-in-out duration-300 hover:bg-neutral-800`}
-                            onClick={toggle}
-                        >
-                            {
-                                isOpen 
-                                ?
+        <div className="flex-col">
+            <div className='flex mb-6 items-center text-lg flow-root'>
+                <p className="float-left">{item.title}</p>
+                <button
+                    className={`flex rounded-4xl px-6 py-3 float-right transition delay-150 ease-in-out duration-500 text-sm text-neutral-400 ${isOpen ? "outline-1 outline-solid outline-neutral-700" : "bg-neutral-900"}`}
+                    onClick={toggle}
+                >
+                    <Image
+                        src={isOpen ? "/up-arrow.png" : "/down-arrow.png"}
+                        alt={isOpen ? "Close" : "Open"}
+                        width={10}
+                        height={10}
+                    />
+                </button>
+            </div>
+            <div className={`relative visible top-14 z-20 left-0 right-0 px-0 delay-300 duration-300 ease-in-out items-start bg-black rounded-md ${transClass}`}>
+                {
+                    <div className="flex-col items-start py-10">
+                        <div className="max-w-full mb-10 rounded-4xl mb-10">
+                            <p className="text-2xl text-semibold text-white mb-6">
+                                {item.tagline}
+                            </p>
+                            <a
+                                className="block rounded-4xl h-max-6 flex flex-1 gap-4 w-fit outline-1 outline-solid outline-neutral-700 row-flex px-3.5 py-1.5 text-sm text-neutral-400 hover:bg-neutral-900"
+                                href={item.explorelink}
+                            >
+                                {item.exploreline}
                                 <Image
-                                    src="/up-arrow.png"
-                                    alt="Up Arrow"
-                                    width={10}
-                                    height={10}
+                                    src ="/right-arrow.png"
+                                    alt="Right arrow"
+                                    width={6}
+                                    height={6}
                                 />
-                                :
-                                <Image
-                                    src="/down-arrow.png"
-                                    alt="Down Arrow"
-                                    width={10}
-                                    height={10}
-                                />
-                            }
-                        </button>
-                        <div className={`absolute top-14 z-20 left-0 right-0 px-8 py-0 delay-300 duration-300 ease-in-out items-start bg-black rounded-md ${transClass}`}
-                             onMouseLeave={close}>
-                            {
-                                <div className="md:grid md:grid-cols-4 items-start py-10">
-                                    <div className="max-w-60">
-                                        <p className="text-2xl text-semibold text-white mb-6">
-                                            {item.tagline}
-                                        </p>
-                                        <a
-                                            className="block rounded-4xl w-fit h-max-6 flex flex-1 gap-4 outline-1 outline-solid outline-neutral-700 row-flex px-3.5 py-1.5 text-sm text-neutral-400 hover:bg-neutral-900"
-                                            href={item.explorelink}
-                                        >
-                                            {item.exploreline}
-                                            <Image
-                                                src ="/right-arrow.png"
-                                                alt="Right arrow"
-                                                width={6}
-                                                height={6}
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className="md:grid md:col-span-3 md:grid-cols-subgrid items-start items-stretch">
-                                        {menuItems.map((item, i) =>
-                                            (<HoverSubItem item={item} key={i}/>))}
-                                    </div>
-                                </div>
-                            }
+                            </a>
                         </div>
-                    {
-                        isOpen
-                            ?
-                            <div>
-                                <div
-                                    className="fixed top-14 right-0 bottom-0 left-0 backdrop-blur-md z-10"
-                                    onMouseOver={close}
-                                >
-                                </div>
-                                <div
-                                    className="fixed top-0 h-10 right-0 bottom-0 left-0 bg-transparent z-0"
-                                    onMouseOver={close}
-                                ></div>
-                                <div
-                                    className="fixed top-10 h-4 right-0 bottom-0 left-0 bg-transparent z-0"
-                                    onMouseOver={open}
-                                ></div>
-                            </div>
-                            :
-                            <></>
-                    }
-                    
-                </div>
-                        
-        </>
+                        <div className="items-stretch">
+                            {menuItems.map((item, j) =>
+                                (<div className="bg-neutral-900 rounded-2xl p-4 mb-3">
+                                    <HoverSubItem item={item} key={j + 100}/>
+                                </div>))}
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     )
 }

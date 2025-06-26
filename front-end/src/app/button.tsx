@@ -20,13 +20,13 @@ export default function Dropdown(props: Props) {
             target={item.target ? item.target : "_self"}
             rel="noopener noreferrer"
         >
-        <Image
-            src={item.image}
-            alt={item.imageAlt ? item.imageAlt : "Icon"}
-            width={20}
-            height={20}
-        />
-        {item.text ? item.text : ""}
+            <Image
+                src={item.image}
+                alt={item.imageAlt ? item.imageAlt : "Icon"}
+                width={20}
+                height={20}
+            />
+            {item.text ? item.text : ""}
         </a>
     )
 }

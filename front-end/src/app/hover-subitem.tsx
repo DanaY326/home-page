@@ -11,8 +11,8 @@ interface Props {
 export default function HoverSubItem (props: Props) {
     const { item } = props;
 
-    return (<div className={"mb-6 md:mb-12 md:h-60 mx-6"}>
-                                            <h2 className={(item.links ? (item.subtitle ? "h-20 md:h-25" : "h-15 md:h-20") : "mb-6 md:mb-7")}><p className="text-white text-xl">{item.title}</p>{item.subtitle ? (<p className="text-neutral-500 text-sm">{item.subtitle}</p>) : ""}</h2>
+    return (<div className={"mb-6 md:mb-12 md:h-60 mx-2 md:mx-6"}>
+                                            <h2 className={(item.links ? (item.subtitle ? "h-20 md:h-25" : "h-15 md:h-20") : "mb-12 md:mb-7")}><p className="text-white text-xl">{item.title}</p>{item.subtitle ? (<p className="text-neutral-500 text-sm">{item.subtitle}</p>) : ""}</h2>
                                                 {item.links ? (
                                                     <ul className="text-white mb-6 md:mb-8">
                                                         {item.links.map((link, j) =>

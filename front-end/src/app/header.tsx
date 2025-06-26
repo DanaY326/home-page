@@ -53,6 +53,11 @@ export interface DropDownItem {
   link: string;
 }
 
+export interface MobileItems {
+  hovers: HoverItem[];
+  buttons: ButtonItem[];
+}
+
 const hoverItems: HoverItem[] = [
   {
     title: "Models",
@@ -365,6 +370,11 @@ const maindropdown: MainDropDown =
     ]
 }
 
+const mobileItems: MobileItems = {
+  hovers: hoverItems,
+  buttons: buttonItems
+}
+
 export default function Header() {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -390,13 +400,13 @@ export default function Header() {
   }, [lastScrollY]);
 
   return (
-      <nav className={`fixed bg-black z-20 ${lastScrollY == 0 ? "outline-0" : "outline-1"} outline-solid outline-neutral-800 w-full max-w-full ${show ? "visible" : "hidden"}`}>
-        <div className="md:hidden">
-          <Mobile items={hoverItems}/>
-        </div>
-        <div className="mx-7 w-full px-2 px-6 md:px-8">
+      <nav className={`absolute lg:fixed bg-black z-20 lg:${lastScrollY == 0 ? "" : "outline-1 outline-solid outline-neutral-800"} w-full max-w-full lg:${show ? "visible" : "hidden"}`}>
+        <div className="md:mx-7 w-full lg:pl-4 lg:pr-8">
           <div className="relative flex h-16 items-center text-left justify-between gap-1 mr-10">
             <div className="flex flex-1 items-center justify-left">
+              <div className="lg:hidden">
+                
+              </div>
               <Dropdown item={maindropdown}/>
               <div className="hidden lg:block">
                 <div className="flex inset-y-0 px-3 left-0 md:static md:inset-auto md:ml-6 md:pr-0">

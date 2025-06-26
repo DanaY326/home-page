@@ -2,16 +2,19 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import MobileItem from './mobile-item';
+import MobileButton from './mobile-button';
 
-import { HoverItem } from './header';
+import { MobileItems } from './header';
 
 interface Props {
-    items: HoverItem[];
+    items: MobileItems;
 }
 
 export default function Mobile(props: Props) {
     const { items } = props;
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const hoverItems = items.hovers;
+    const buttonItems = items.buttons;
 
     const toggle = () => {
         setIsOpen(old => !old);
@@ -19,53 +22,37 @@ export default function Mobile(props: Props) {
 
     const transClass = isOpen
         ?
-        "flex"
+        "visible"
         :
         "hidden";
 
     return (
-        <div className="flex p-0 flex-1 items-center justify-centre gap-2">
-                <button
-                    className="flex items-center gap-2 block rounded-4xl px-3 py-2 text-sm text-neutral-400 bg-neutral-900 hover:bg-neutral-800" 
-                    onClick={toggle}
-                    onMouseOver={isOpen ? toggle : ()=>null}
-                >
-                    {
-                        isOpen 
-                        ?
-                        <Image
-                            src="/up-arrow.png"
-                            alt="Up Arrow"
-                            width={10}
-                            height={10}
-                        />
-                        :
-                        <Image
-                            src="/down-arrow.png"
-                            alt="Down Arrow"
-                            width={10}
-                            height={10}
-                        />
-                    }
-                    
-                </button>
-                <div className={`absolute top-0 z-0 w-full min-h-[100px] flex flex-col bg-oppacity-100 rounded-md ${transClass}`}>
-                    {items.map((item, i) => {
+        <div className="z-20">
+            <button
+                className={`mx-6 flex cursor-pointer rounded-4xl ${isOpen ? "px-5 py-3" : "px-4 py-2"} transition delay-150 ease-in-out duration-500 text-sm text-neutral-400 ${isOpen ? "outline-1 outline-solid outline-neutral-700" : "bg-neutral-900"}`} 
+                onClick={toggle}
+            >
+                <Image
+                    src={isOpen ? "/x.png" : "/hamburger.png"}
+                    alt={isOpen ? "Close" : "Menu"}
+                    width={isOpen ? 8 : 18}
+                    height={isOpen ? 8 : 18}
+                />
+            </button>
+            <div className={`absolute h-fit px-6 py-5 top-14 left-0 right-0 border-t-1 border-solid border-neutral-800 pb-1 delay-300 duration-300 ease-in-out bg-black ${transClass}`}>
+                {hoverItems.map((item, i) => {
+                    return (
+                        <MobileItem item={item} key={i}/>
+                    );
+                })}
+                <div className='my-30'>
+                    {buttonItems.map((item, i) => {
                         return (
-                            <MobileItem item={item} key={i}/>
+                            <MobileButton item={item} key={i}/>
                         );
                     })}
                 </div>
-                {
-                    isOpen
-                    ?
-                    <div
-                        className="fixed top-0 right-0 bottom-0 left-0 z-0 bg-transparent"
-                        onClick={toggle}
-                    ></div>
-                    :
-                    <></>
-                }
+            </div>
         </div>
     )
 }

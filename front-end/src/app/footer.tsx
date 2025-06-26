@@ -53,7 +53,8 @@ export default function Footer() {
                 />
                 </a>
             </div>
-            <div className="w-full max-w-full gap-8 lg:py-6 sm:grid sm:grid-cols-2 md:grid-cols-3 items-start text-lg md:text-xl">
+            <hr className="h-0.5 border-t-0 bg-neutral-900" />
+            <div className="w-full max-w-full gap-8 lg:mt-12 sm:grid sm:grid-cols-2 md:grid-cols-3 items-start text-lg md:text-xl">
             <div className="text-white mr-30 text-2xl lg:text-3xl sm:max-w-50% md:max-w-40% mb-10 md:mb-12">Build AI reponsibly to benefit humanity</div>
                 <div className="mb-6 md:mb-12 md:h-60 sm:col-start-2 sm:row-start-1">
                     <h2 className="mb-3 sm:mb-4 text-sm"><p className="text-white mb-1">Models</p><p className="text-neutral-500">Build with our next generation AI systems</p></h2>
@@ -210,12 +211,12 @@ export default function Footer() {
             </div>
 
             <div className="relative block w-100% mx-0 max-w-full py-8 flex gap-0 z-0 justify-left items-centre flex-col md:flex-row border-t-1 border-solid border-neutral-700">
-                <a className="text-gray-400 ml-10 mb-10 md:mb-0 md:ml-20 justify-left text-2xl md:text-center"
+                <a className="text-gray-400 md:ml-10 mb-10 md:mb-0 md:ml-20 justify-left text-2xl md:text-center"
                     href="https://www.google.com/"
                     target="_blank" >
                     Google
                 </a>
-                <div className="text-gray-400 ml-10 md:ml-20 font-thin flex gap-6 text-lg flex-col md:flex-row">
+                <div className="text-gray-400 md:ml-10 md:ml-20 font-thin flex gap-6 text-lg flex-col md:flex-row">
                 <a className="md:text-center"
                     href="https://about.google/" 
                     target="_blank" >
