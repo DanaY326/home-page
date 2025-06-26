@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-import { SubItem } from './header';
+import { SubItem } from '../header/header';
 
 interface Props {
     item: SubItem;

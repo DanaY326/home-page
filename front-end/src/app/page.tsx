@@ -1,8 +1,8 @@
 import Image from "next/image";
 import "tailwindcss";
-import Footer from "./footer";
-import Body from "./body";
-import Header from "./header";
+import Footer from "../components/footer/footer";
+import Body from "../components/body/body";
+import Header from "../components/header/header";
 
 export default function Home() {
   return (

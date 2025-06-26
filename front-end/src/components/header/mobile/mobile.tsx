@@ -4,7 +4,7 @@ import Image from 'next/image';
 import MobileItem from './mobile-item';
 import MobileButton from './mobile-button';
 
-import { MobileItems } from './header';
+import { MobileItems } from '../header';
 
 interface Props {
     items: MobileItems;

@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ButtonItem } from './header';
+import { ButtonItem } from '../header';
 
 interface Props {
     item: ButtonItem;

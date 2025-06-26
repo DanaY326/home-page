@@ -5,7 +5,7 @@ import Link from "next/link";
 import Dropdown from "./dropdown";
 import Hover from "./hover";
 import Button from "./button";
-import Mobile from "./mobile";
+import Mobile from "./mobile/mobile";
 
 export interface HoverItem {
   title: string;
