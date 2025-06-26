@@ -401,7 +401,7 @@ export default function Header() {
 
   return (
       <nav className={`absolute lg:fixed bg-black z-20 lg:${lastScrollY == 0 ? "" : "outline-1 outline-solid outline-neutral-800"} w-full max-w-full lg:${show ? "visible" : "hidden"}`}>
-        <div className="md:mx-7 w-full lg:pl-4 lg:pr-8">
+        <div className="mx-7 md:mx-10 w-full lg:pl-4 lg:pr-8">
           <div className="relative flex h-16 items-center text-left justify-between gap-1 mr-10">
             <div className="flex flex-1 items-center justify-left">
               <div className="lg:hidden">
@@ -409,7 +409,7 @@ export default function Header() {
               </div>
               <Dropdown item={maindropdown}/>
               <div className="hidden lg:block">
-                <div className="flex inset-y-0 px-3 left-0 md:static md:inset-auto md:ml-6 md:pr-0">
+                <div className="flex inset-y-0 px-3 left-0 xl:static xl:inset-auto xl:ml-6 xl:pr-0">
                   {hoverItems.map((item, i) => {
                     return (
                       <Hover item={item} key={i}/>

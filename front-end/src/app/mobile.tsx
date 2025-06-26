@@ -29,7 +29,7 @@ export default function Mobile(props: Props) {
     return (
         <div className="z-20">
             <button
-                className={`mx-6 flex cursor-pointer rounded-4xl px-5 py-3 transition delay-150 ease-in-out duration-500 text-sm text-neutral-400 ${isOpen ? "outline-1 outline-solid outline-neutral-700" : "bg-neutral-900"}`} 
+                className={`flex cursor-pointer rounded-4xl px-5 py-3 transition delay-150 ease-in-out duration-500 text-sm text-neutral-400 ${isOpen ? "outline-1 outline-solid outline-neutral-700" : "bg-neutral-900"}`} 
                 onClick={toggle}
             >
                 <Image

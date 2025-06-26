@@ -5,7 +5,7 @@ import "tailwindcss";
 export default function Footer() {
     return (
         <footer className="bg-black max-w-full">
-            <div className="relative block text-lg text-white mx-7 md:mx-20 mb-6 md:mb-12 flex gap-4 md:gap-6 items-center flex-col flex-row">
+            <div className="relative block text-lg text-white mx-7 lg:mx-20 mb-6 md:mb-12 flex gap-4 md:gap-6 items-center flex-col flex-row">
             <p className="mr-4 md:mr-8">Follow us</p>
                 <a href="https://x.com/googledeepmind" className="flex items-center gap-1 block w-max-20 h-max-20 md:w-max-30 md:h-max-30" target="_blank">
                 <Image
@@ -54,8 +54,8 @@ export default function Footer() {
                 </a>
             </div>
             <hr className="h-0.5 border-t-0 bg-neutral-900" />
-            <div className="w-full max-w-full mx-7 md:mx-20 gap-8 mt-6 md:mt-12 sm:grid sm:grid-cols-2 md:grid-cols-3 items-start text-lg md:text-xl">
-            <div className="text-white justify-left mr-10 text-2xl md:text-3xl sm:max-w-50% md:max-w-40% mb-10 md:mb-12">Build AI reponsibly to benefit humanity</div>
+            <div className="w-fit max-w-full mx-7 lg:mx-20 gap-8 mt-6 md:mt-12 sm:grid sm:grid-cols-2 md:grid-cols-3 items-start text-lg md:text-xl">
+            <div className="text-white justify-left pr-10 text-2xl md:text-3xl sm:w-1/2 md:w-1/3 mb-10 md:mb-12">Build AI reponsibly to benefit humanity</div>
                 <div className="mb-6 md:mb-12 md:h-60 sm:col-start-2 sm:row-start-1">
                     <h2 className="mb-3 sm:mb-4 text-sm"><p className="text-white mb-1">Models</p><p className="text-neutral-500">Build with our next generation AI systems</p></h2>
                     <ul className="text-white">
@@ -183,7 +183,7 @@ export default function Footer() {
                     </ul>
                 </div>
                 
-                <div className="mb-6 mr-15 md:mb-12 md:h-60 sm:w-max-50% mr-5 md:w-max-30% text-neutral-400 sm:col-start-2 sm:row-start-4 md:col-start-3 md:row-start-2">
+                <div className="mb-6 mr-15 md:mb-12 md:h-60 sm:w-max-1/2 mr-5 md:w-max-1/3 text-neutral-400 sm:col-start-2 sm:row-start-4 md:col-start-3 md:row-start-2">
                     <p className="mb-3 md:mb-4 mr-10 text-sm">
                         Sign up for updates on our latest innovations
                     </p>
@@ -211,7 +211,7 @@ export default function Footer() {
             </div>
 
             <hr className="h-0.5 border-t-0 bg-neutral-900" />
-            <div className="relative block w-100% mx-0 max-w-full mx-7 md:mx-20 py-8 flex gap-0 z-0 justify-left items-centre flex-col md:flex-row">
+            <div className="relative block max-w-full py-8 flex gap-0 z-0 justify-left items-centre flex-col md:flex-row">
                 <a className="text-gray-400 md:ml-10 mb-10 md:mb-0 md:ml-20 justify-left text-2xl md:text-center"
                     href="https://www.google.com/"
                     target="_blank" >
