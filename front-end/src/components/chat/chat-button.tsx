@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-    setShow: (bool: boolean) => void;
+    open: () => void;
 }
 
 export default function ChatButton(props: Props) {
-  const { setShow } = props;
+  const { open } = props;
   return (
-    <button onClick={() => setShow(true)} className="fixed bottom-6 right-6 rounded-2xl bg-white hover:bg-blue-100 shadow-sm font-bold p-1 z-50">
+    <button onClick={open} className="fixed bottom-6 right-6 rounded-xl bg-blue-200 outline-1 outline-solid outline-neutral-700 hover:bg-blue-100 shadow-sm font-bold p-1 z-30">
         <Image
             className=""
             src={"gemini-blue.svg"}
