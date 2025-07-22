@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import ChatButton from './chat-button';
-import MessageBox from './message-box';
+import FloatingButton from './floating-button';
+import Popup from './popup';
 
 export default function Chat() {
   const [show, setShow] = useState(false);
@@ -13,9 +13,9 @@ export default function Chat() {
 
   return (
     <div className={`absolute lg:fixed bg-black w-full max-w-full`}>
-        <ChatButton open={open}/>
+        <FloatingButton open={open}/>
         <div className={`${show ? "" : "hidden"}`}>
-            <MessageBox close={close}/>
+            <Popup close={close}/>
         </div>
     </div>
   );
