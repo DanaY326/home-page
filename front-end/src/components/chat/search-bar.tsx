@@ -55,8 +55,8 @@ export default function SearchBar(props: Props) {
     return (
       <div>
         <Form action="" onSubmit={handleQuery} className='w-full flex flex-row'>
-            <input {...register("prompt")} name="prompt" placeholder="Ask Gemini" className='px-4 py-2 m-4 rounded-full w-full font-thin text-md bg-neutral-800 outline-1 outline-solid outline-neutral-700 hover:outline-white'/>
-            <button type="submit" className='px-4 py-2 my-4 rounded-full bg-neutral-800 hover:bg-neutral-700 hover:cursor-pointer'>
+            <input {...register("prompt")} name="prompt" placeholder="Ask Gemini" className='px-4 py-2 my-4 mx-3 rounded-full w-full font-thin text-md bg-neutral-800 outline-1 outline-solid outline-neutral-700 hover:outline-white'/>
+            <button type="submit" className='px-4 py-2 my-4 mx-3 rounded-full bg-neutral-800 hover:bg-neutral-700 hover:cursor-pointer'>
               <Image
                   src={"/gemini-white.svg"}
                   alt="Image"

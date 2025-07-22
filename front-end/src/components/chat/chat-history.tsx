@@ -26,7 +26,7 @@ export default function ChatHistory(props: Props) {
     }, [inputHistory, resultHistory])
 
   return (
-    <div ref={chatHistoryRef} className="w-full h-full flex flex-col">
+    <div ref={chatHistoryRef} className="w-full h-full flex flex-col items-end">
         {inputHistory.map((inputFromArr, index) => {
             const resultFromArr = resultHistory[index] ? resultHistory[index] : "Thinking...";
             return (
@@ -34,7 +34,7 @@ export default function ChatHistory(props: Props) {
                     <div className='flex justify-end'>
                         <UserChat text={inputFromArr}/>
                     </div>
-                    <div className='flex flex-col justify-start'>
+                    <div className='flex flex-col justify-start text-wrap wrap-break-word'>
                         <Markdown remarkPlugins={[remarkGfm]}>{resultFromArr}</Markdown>
                     </div>
                 </div>

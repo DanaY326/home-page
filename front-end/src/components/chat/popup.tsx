@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Form from 'next/form'
@@ -32,14 +32,15 @@ export default function Popup(props: Props) {
     }, [result])
 
     return (
-            <div className="fixed bottom-0 right-0 flex flex-col w-full h-full sm:w-80 sm:h-100 sm:pt-50 sm:rounded-2xl bg-neutral-950 sm:outline-1 sm:outline-solid sm:outline-neutral-700 p-1 z-30">
-                <div className='absolute top-3 right-3'>
+            <div className="fixed bottom-0 right-0 flex flex-col w-full h-full sm:w-80 sm:h-[80vh] sm:rounded-2xl bg-neutral-950 sm:outline-1 sm:outline-solid sm:outline-neutral-700 p-1 z-30">
+                <div className='flex'></div>
+                <div className='flex justify-end mr-3 mt-3 mb-1'>
                     <CloseButton close={close}/>
                 </div>
-                <div className='relative grow overflow-y-auto'>
+                <div className='grow overflow-y-scroll scrollbar-hidden'>
                     <ChatHistory inputHistory={inputHistory} resultHistory={resultHistory}/>
                 </div>
-                <div className='w-full px-1 py-1'>
+                <div className='w-full'>
                     <SearchBar setInput={setInput} setResult={setResult} />
                 </div>
             </div>
