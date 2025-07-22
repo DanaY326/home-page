@@ -13,6 +13,8 @@ export default function MobileItem(props: Props) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const menuItems = item.children;
 
+    const getNextId = () => String(Math.random()).slice(2);
+
     const toggle = () => {
         setIsOpen(old => !old);
     }
@@ -60,9 +62,9 @@ export default function MobileItem(props: Props) {
                             </a>
                         </div>
                         <div className="items-stretch">
-                            {menuItems.map((item, j) =>
+                            {menuItems.map((item) =>
                                 (<div className="bg-neutral-900 rounded-2xl p-4 mb-3">
-                                    <HoverSubItem item={item} key={j + 'mobileItem!'}/>
+                                    <HoverSubItem item={item} key={getNextId()}/>
                                 </div>))}
                         </div>
                     </div>
