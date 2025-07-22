@@ -7,6 +7,7 @@ import Form from 'next/form'
 import CloseButton from './close-button';
 
 interface Props {
+    inputHistory: string[];
     setInput: (str: string) => void;
     setResult: (str: string) => void;
 }
@@ -33,7 +34,7 @@ const fetchResponse = async (input: string) => {
 };
 
 export default function SearchBar(props: Props) {
-    const { setInput, setResult } = props;
+    const { inputHistory, setInput, setResult } = props;
     const { register, getValues, reset } = useForm();
     const handleQuery = async (event: any) => {
       try {
@@ -43,10 +44,10 @@ export default function SearchBar(props: Props) {
             console.log("Input is empty, not sending query.");
             throw("Input is empty, not sending query.");
         }
+        reset({ prompt: '' });
         setInput(input);
         const response = await fetchResponse(input);
         setResult(response.summary);
-        reset({ prompt: '' });
       } catch(err) {
         console.log(err);
       }
@@ -55,15 +56,7 @@ export default function SearchBar(props: Props) {
     return (
       <div>
         <Form action="" onSubmit={handleQuery} className='w-full flex flex-row'>
-            <input {...register("prompt")} name="prompt" placeholder="Ask Gemini" className='px-4 py-2 my-4 mx-3 rounded-full w-full font-thin text-md bg-neutral-800 outline-1 outline-solid outline-neutral-700 hover:outline-white'/>
-            <button type="submit" className='px-4 py-2 my-4 mx-3 rounded-full bg-neutral-800 hover:bg-neutral-700 hover:cursor-pointer'>
-              <Image
-                  src={"/gemini-white.svg"}
-                  alt="Image"
-                  height={15}
-                  width={15}
-              />
-            </button>
+            <input {...register("prompt")} name="prompt" placeholder="Ask Gemini" className='px-4 py-2 m-5 rounded-full w-full font-thin text-md bg-neutral-800 outline-1 outline-solid outline-neutral-700 hover:outline-white'/>
         </Form>
       </div>
     );

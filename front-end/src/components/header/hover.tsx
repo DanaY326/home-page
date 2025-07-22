@@ -46,7 +46,7 @@ export default function Hover (props: Props) {
                         :
                         <></>
                 }
-                <div className={`absolute h-fit top-14 z-20 left-0 right-0 px-8 py-0 delay-300 duration-300 ease-in-out items-start bg-black rounded-md ${transClass}`}
+                <div className={`absolute h-fit top-14 z-20 left-0 right-0 px-8 py-0 delay-600 duration-300 ease-in-out items-start bg-black rounded-md ${transClass}`}
                      onMouseLeave={close}>
                     {
                         <div className="md:grid md:grid-cols-4 items-start py-10">

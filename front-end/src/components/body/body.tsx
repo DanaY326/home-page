@@ -207,7 +207,7 @@ const models: DetailedModel[] = [
 ]
 
 export default function Body() {
-    const [isLeft, setIsLeft] = useState<boolean>(false);
+    const [isLeft, setIsLeft] = useState<boolean>(true);
 
     const left = () => {
         setIsLeft(() => true);
@@ -239,7 +239,7 @@ export default function Body() {
             <div className='w-full h-fit flow-root'>
                 <div className='text-4xl float-left'>Start building</div>
                 <a
-                    className="block rounded-4xl w-fit float-right h-max-6 flex gap-4 items-centre cursor-pointer outline-1 outline-solid outline-neutral-700 row-flex px-3.5 py-1.5 text-sm text-neutral-400 bg-neutral-900"
+                    className="block rounded-4xl w-fit float-right h-max-6 flex gap-4 items-centre cursor-pointer outline-1 outline-solid outline-neutral-700 row-flex px-3.5 py-1.5 text-sm text-neutral-400 bg-neutral-900 hover:bg-neutral-800"
                     href="https://deepmind.google/models/"
                 >
                     View models
