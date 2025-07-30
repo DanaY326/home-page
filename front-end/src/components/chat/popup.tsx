@@ -1,11 +1,8 @@
 "use client"
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
-import Link from "next/link";
-import Form from 'next/form'
 import SearchBar from './search-bar';
 import ChatHistory from './chat-history';
-import PopupHeader from './popup-header';
 import CloseButton from './close-button';
 
 interface Props {

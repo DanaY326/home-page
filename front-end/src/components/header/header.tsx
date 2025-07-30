@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "./dropdown";
 import Hover from "./hover";

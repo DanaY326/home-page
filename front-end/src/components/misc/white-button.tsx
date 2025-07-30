@@ -2,8 +2,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import { Article } from '../body/body';
-
 interface ButtonText {
     text: string;
 }

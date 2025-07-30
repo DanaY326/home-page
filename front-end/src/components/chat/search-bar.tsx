@@ -1,10 +1,7 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React from 'react';
  import { useForm } from "react-hook-form";
-import Image from "next/image";
-import Link from "next/link";
 import Form from 'next/form'
-import CloseButton from './close-button';
 
 interface Props {
     inputHistory: string[];
