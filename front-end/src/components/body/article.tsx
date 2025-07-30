@@ -1,9 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import WhiteButton  from "../misc/white-button";
-import BigArticle from "./big-article";
 
 import { Article } from './body';
 

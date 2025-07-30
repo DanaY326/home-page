@@ -5,4 +5,9 @@ const nextConfig: NextConfig = {
   devIndicators: false
 };
 
+module.exports = {
+  // ... rest of the configuration.
+  output: "standalone",
+};
+
 export default nextConfig;

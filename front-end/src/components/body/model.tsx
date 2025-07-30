@@ -1,10 +1,9 @@
 "use client"
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import WhiteButton from "../misc/white-button";
 
-import { Article, DetailedModel } from './body';
+import { DetailedModel } from './body';
 
 interface Props {
     item: DetailedModel;

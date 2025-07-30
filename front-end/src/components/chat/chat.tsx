@@ -1,7 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState } from 'react';
 import FloatingButton from './floating-button';
 import Popup from './popup';
 
