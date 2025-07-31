@@ -11,7 +11,6 @@ interface Props {
 
 export default function Model(props: Props) {
     const { item } = props;
-    const menuItems = item.links;
 
     return (
         <div className={"mb-6 md:mb-12 md:h-60 mx-2 text-neutral-500"}>

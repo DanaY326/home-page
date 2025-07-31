@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import BigArticle from './big-article';
 import ArticleBlock from './article';
@@ -227,10 +227,10 @@ export default function Body() {
                 <div className="col-span-1 clear-both">
                     {topArticles.map((item, i) => {
                         return (
-                            <>  
+                            <div key={i}>  
                                 {i != 0 ? <hr className="h-0.5 border-t-0 bg-neutral-900 my-10" /> : <></>}
-                                <ArticleBlock item={item} key={i}/>
-                            </>
+                                <ArticleBlock item={item}/>
+                            </div>
                         );
                     })}
                 </div>

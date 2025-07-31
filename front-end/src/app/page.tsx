@@ -1,4 +1,3 @@
-import Image from "next/image";
 import "tailwindcss";
 import Footer from "../components/footer/footer";
 import Body from "../components/body/body";
