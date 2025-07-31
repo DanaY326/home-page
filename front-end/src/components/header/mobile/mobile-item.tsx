@@ -63,8 +63,8 @@ export default function MobileItem(props: Props) {
                         </div>
                         <div className="items-stretch">
                             {menuItems.map((item) =>
-                                (<div className="bg-neutral-900 rounded-2xl p-4 mb-3">
-                                    <HoverSubItem item={item} key={getNextId()}/>
+                                (<div className="bg-neutral-900 rounded-2xl p-4 mb-3" key={getNextId()}>
+                                    <HoverSubItem item={item}/>
                                 </div>))}
                         </div>
                     </div>

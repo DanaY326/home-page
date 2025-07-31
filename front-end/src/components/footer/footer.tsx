@@ -187,9 +187,9 @@ export default function Footer() {
                     <p className="mb-3 md:mb-4 mr-10 text-sm">
                         Sign up for updates on our latest innovations
                     </p>
-                    <p className="mb-3 md:mb-4 text-xs">I accept Google's Terms and Conditions and acknowledge that my information will be used in accordance with &nbsp;
+                    <p className="mb-3 md:mb-4 text-xs">I accept Google&apos;s Terms and Conditions and acknowledge that my information will be used in accordance with &nbsp;
                         <a href="https://policies.google.com/privacy" target="_blank" className="underline hover:no-underline">
-                        Google's privacy policy
+                        Google&apos;s privacy policy
                         </a>
                         .
                     </p>

@@ -31,9 +31,9 @@ const fetchResponse = async (input: string) => {
 };
 
 export default function SearchBar(props: Props) {
-    const { inputHistory, setInput, setResult } = props;
+    const { setInput, setResult } = props;
     const { register, getValues, reset } = useForm();
-    const handleQuery = async (event: any) => {
+    const handleQuery = async (event: React.FormEvent<HTMLFormElement>) => {
       try {
         event.preventDefault();
         const input = getValues("prompt");

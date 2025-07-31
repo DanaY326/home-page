@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from "next/link";
 import Dropdown from "./dropdown";
 import Hover from "./hover";
@@ -378,7 +378,7 @@ export default function Header() {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
+  const controlNavbar = useCallback (() => {
     if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
       setShow(false); 
     } else { // if scroll up show the navbar
@@ -387,7 +387,7 @@ export default function Header() {
 
     // remember current page location to use in the next move
     setLastScrollY(window.scrollY); 
-  };
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', controlNavbar);
@@ -396,7 +396,7 @@ export default function Header() {
     return () => {
        window.removeEventListener('scroll', controlNavbar);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, controlNavbar]);
 
   return (
       <nav className={`absolute lg:fixed bg-black z-20 lg:${lastScrollY == 0 ? "" : "outline-1 outline-solid outline-neutral-800"} w-full max-w-full lg:${show ? "visible" : "hidden"}`}>

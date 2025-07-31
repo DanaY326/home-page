@@ -26,7 +26,7 @@ export default function ChatHistory(props: Props) {
   return (
     <div ref={chatHistoryRef} className="w-full h-full flex flex-col items-end text-neutral-300 text-sm/7">
         <div className='w-full flex flex-col justify-start gap-4 px-8 py-4 text-wrap wrap-break-word'>
-            <Markdown remarkPlugins={[remarkGfm]}>Welcome! I'm ready to assist you.</Markdown>
+            <Markdown remarkPlugins={[remarkGfm]}>Welcome! I&apos;m ready to assist you.</Markdown>
         </div>
         {inputHistory.map((inputFromArr, index) => {
             const resultFromArr = resultHistory[index] ? resultHistory[index] : "Thinking...";

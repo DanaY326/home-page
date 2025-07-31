@@ -299,7 +299,7 @@ export default function Body() {
             <div className="md:grid md:grid-cols-2 gap-10 grid-flow-row auto-rows-fr flex flex-wrap">
                 {researchArticles.map((item, i) => {
                     return (
-                        <div className=''>  
+                        <div className='' key={i}>  
                             {i >= 2 ? <hr className="h-0.5 border-t-0 bg-neutral-900 mb-10" /> : <></>}
                             <ArticleBlock item={item} key={i}/>
                         </div>
