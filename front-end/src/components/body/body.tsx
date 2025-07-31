@@ -256,9 +256,7 @@ export default function Body() {
                 <div className='md:grid md:grid-cols-4 gap-4 mt-10 my-10 clear-end my-80'>
                     {models.slice(isLeft ? 0 : 1, isLeft ? -1 : models.length).map((item, i) => {
                         return (
-                            <>  
-                                <Model item={item} key={i}/>
-                            </>
+                            <Model item={item} key={i}/>
                         );
                     })}            
                 </div>
