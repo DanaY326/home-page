@@ -1,3 +1,5 @@
 home-page
 .env
 tmp
+.aws-sam
+samconfig.toml

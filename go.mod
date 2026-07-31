@@ -3,10 +3,12 @@ module home-page/mod
 go 1.25.1
 
 require (
+	github.com/aws/aws-lambda-go v1.54.0
 	github.com/aws/aws-sdk-go-v2 v1.43.2
 	github.com/aws/aws-sdk-go-v2/config v1.32.33
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.62.2
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.106.2
+	github.com/awslabs/aws-lambda-go-api-proxy v0.16.2
 	google.golang.org/genai v1.51.0
 )
 

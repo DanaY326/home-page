@@ -10,11 +10,13 @@ import (
 	"os"
 	"time"
 
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/awslabs/aws-lambda-go-api-proxy/httpadapter"
 	"google.golang.org/genai"
 )
 
@@ -103,7 +105,11 @@ func (s *chatStore) history(ctx context.Context, sessionID string) ([]historyIte
 }
 
 func setCORSHeaders(w http.ResponseWriter, methods string) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	origin := os.Getenv("ALLOWED_ORIGIN")
+	if origin == "" {
+		origin = "http://localhost:3000"
+	}
+	w.Header().Set("Access-Control-Allow-Origin", origin)
 	w.Header().Set("Access-Control-Allow-Methods", methods+", OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 }
@@ -143,11 +149,13 @@ func main() {
 		bucketName: bucketName,
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello, world!")
 	})
 
-	http.HandleFunc("/chat", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/chat", func(w http.ResponseWriter, r *http.Request) {
 		setCORSHeaders(w, "POST")
 
 		if r.Method == http.MethodOptions {
@@ -192,7 +200,7 @@ func main() {
 		json.NewEncoder(w).Encode(chatResponse{Summary: summary})
 	})
 
-	http.HandleFunc("/history", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/history", func(w http.ResponseWriter, r *http.Request) {
 		setCORSHeaders(w, "GET")
 
 		if r.Method == http.MethodOptions {
@@ -221,7 +229,13 @@ func main() {
 		json.NewEncoder(w).Encode(history)
 	})
 
+	if os.Getenv("AWS_LAMBDA_FUNCTION_NAME") != "" {
+		adapter := httpadapter.NewV2(mux)
+		lambda.Start(adapter.ProxyWithContext)
+		return
+	}
+
 	port := ":8080"
 	fmt.Println("Server listening on", port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	log.Fatal(http.ListenAndServe(port, mux))
 }

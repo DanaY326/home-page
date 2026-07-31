@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Go chat backend (Gemini + DynamoDB + S3) running on Lambda behind an HTTP API.
+
+Parameters:
+  GeminiApiKey:
+    Type: String
+    NoEcho: true
+    Description: API key for the Gemini API.
+  DynamoDBTableName:
+    Type: String
+    Default: deepmind-clone
+    Description: Existing DynamoDB table used to store chat history.
+  S3BucketName:
+    Type: String
+    Default: deepmind-clone
+    Description: Existing S3 bucket used to archive chat history.
+  AllowedOrigin:
+    Type: String
+    Default: http://localhost:3000
+    Description: Origin allowed to call this API (CORS).
+
+Globals:
+  Function:
+    Timeout: 15
+    MemorySize: 256
+
+Resources:
+  ChatFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: makefile
+    Properties:
+      CodeUri: .
+      Handler: bootstrap
+      Runtime: provided.al2023
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          GEMINI_API_KEY: !Ref GeminiApiKey
+          DYNAMODB_TABLE_NAME: !Ref DynamoDBTableName
+          S3_BUCKET_NAME: !Ref S3BucketName
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DynamoDBTableName
+        - S3CrudPolicy:
+            BucketName: !Ref S3BucketName
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        ApiRoot:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+
+Outputs:
+  ApiUrl:
+    Description: Base URL of the deployed HTTP API
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+  ChatFunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt ChatFunction.Arn
