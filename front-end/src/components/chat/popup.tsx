@@ -4,29 +4,43 @@ import Image from "next/image";
 import SearchBar from './search-bar';
 import ChatHistory from './chat-history';
 import CloseButton from './close-button';
+import { getSessionId, fetchHistory } from '@/lib/chatApi';
 
 interface Props {
     close: () => void;
+    isOpen: boolean;
 }
 
 export default function Popup(props: Props) {
+    const [sessionId, setSessionId] = useState("");
     const [inputHistory, setInputHistory] = useState<string[]>([]);
     const [resultHistory, setResultHistory] = useState<string[]>([]);
     const [input, setInput] = useState("");
     const [result, setResult] = useState("");
-    const { close } = props;
+    const { close, isOpen } = props;
+
+    useEffect(() => {
+        const id = getSessionId();
+        setSessionId(id);
+        fetchHistory(id)
+            .then(history => {
+                setInputHistory(history.map(item => item.input));
+                setResultHistory(history.map(item => item.summary));
+            })
+            .catch(err => console.error("Failed to load chat history:", err));
+    }, [])
 
     useEffect(() => {
         if (input !== "") {
             setInputHistory(prevHistory => [...prevHistory, input]);
             setResultHistory(prevHistory => [...prevHistory, "Thinking..."]);
-        } 
+        }
     }, [input])
 
     useEffect(() => {
         if (result !== "") {
             setResultHistory(prevHistory => [...prevHistory.slice(0, -1), result]);
-        } 
+        }
     }, [result])
 
     return (
@@ -42,10 +56,10 @@ export default function Popup(props: Props) {
                         <CloseButton close={close}/>
                     </div>
                 <div className='grow overflow-y-scroll scrollbar-hidden'>
-                    <ChatHistory inputHistory={inputHistory} resultHistory={resultHistory}/>
+                    <ChatHistory inputHistory={inputHistory} resultHistory={resultHistory} isOpen={isOpen}/>
                 </div>
                 <div className='w-full'>
-                    <SearchBar inputHistory={inputHistory} setInput={setInput} setResult={setResult} />
+                    <SearchBar inputHistory={inputHistory} sessionId={sessionId} setInput={setInput} setResult={setResult} />
                 </div>
             </div>
     );

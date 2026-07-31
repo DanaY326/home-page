@@ -3,22 +3,24 @@ import React from 'react';
  import { useForm } from "react-hook-form";
 import Form from 'next/form'
 
+import { baseUrl } from '@/lib/chatApi';
+
 interface Props {
     inputHistory: string[];
+    sessionId: string;
     setInput: (str: string) => void;
     setResult: (str: string) => void;
 }
 
-const baseUrl = "http://localhost:8080";
-
-const fetchResponse = async (input: string) => {
+const fetchResponse = async (input: string, sessionId: string) => {
   try {
     const response = await fetch(`${baseUrl}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        session_id: sessionId,
         text: {input}
-      }), // Replace with your state which is controlled by an input
+      }),
     });
 
     // Parse the response data
@@ -31,7 +33,7 @@ const fetchResponse = async (input: string) => {
 };
 
 export default function SearchBar(props: Props) {
-    const { setInput, setResult } = props;
+    const { sessionId, setInput, setResult } = props;
     const { register, getValues, reset } = useForm();
     const handleQuery = async (event: React.FormEvent<HTMLFormElement>) => {
       try {
@@ -43,7 +45,7 @@ export default function SearchBar(props: Props) {
         }
         reset({ prompt: '' });
         setInput(input);
-        const response = await fetchResponse(input);
+        const response = await fetchResponse(input, sessionId);
         setResult(response.summary);
       } catch(err) {
         console.log(err);

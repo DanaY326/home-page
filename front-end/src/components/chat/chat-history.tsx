@@ -8,10 +8,11 @@ import remarkGfm from "remark-gfm";
 interface Props {
     inputHistory: string[];
     resultHistory: string[];
+    isOpen: boolean;
 }
 
 export default function ChatHistory(props: Props) {
-  const { inputHistory, resultHistory } = props;
+  const { inputHistory, resultHistory, isOpen } = props;
   const chatHistoryRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -22,6 +23,15 @@ export default function ChatHistory(props: Props) {
             }
         }
     }, [inputHistory, resultHistory])
+
+    useEffect(() => {
+        if (isOpen && chatHistoryRef.current) {
+            const lastChild = chatHistoryRef.current.lastElementChild;
+            if (lastChild) {
+                lastChild.scrollIntoView({ behavior: 'instant', block: 'end' });
+            }
+        }
+    }, [isOpen])
 
   return (
     <div ref={chatHistoryRef} className="w-full h-full flex flex-col items-end text-neutral-300 text-sm/7">

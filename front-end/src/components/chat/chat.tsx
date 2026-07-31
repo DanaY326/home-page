@@ -13,7 +13,7 @@ export default function Chat() {
     <div className={`absolute lg:fixed bg-black w-full max-w-full`}>
         <FloatingButton open={open}/>
         <div className={`${show ? "" : "hidden"}`}>
-            <Popup close={close}/>
+            <Popup close={close} isOpen={show}/>
         </div>
     </div>
   );
