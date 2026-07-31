@@ -9,11 +9,11 @@ interface Props {
     setResult: (str: string) => void;
 }
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:8080";
 
 const fetchResponse = async (input: string) => {
   try {
-    const response = await fetch(`${baseUrl}/api/gemini-ai-model`, {
+    const response = await fetch(`${baseUrl}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
