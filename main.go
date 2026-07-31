@@ -77,6 +77,21 @@ func (s *chatStore) save(ctx context.Context, sessionID, input, summary string) 
 	}
 }
 
+func parseHistoryItems(items []map[string]types.AttributeValue) []historyItem {
+	history := make([]historyItem, 0, len(items))
+	for _, item := range items {
+		entry := historyItem{}
+		if v, ok := item["input"].(*types.AttributeValueMemberS); ok {
+			entry.Input = v.Value
+		}
+		if v, ok := item["summary"].(*types.AttributeValueMemberS); ok {
+			entry.Summary = v.Value
+		}
+		history = append(history, entry)
+	}
+	return history
+}
+
 func (s *chatStore) history(ctx context.Context, sessionID string) ([]historyItem, error) {
 	out, err := s.dynamo.Query(ctx, &dynamodb.QueryInput{
 		TableName:              aws.String(s.tableName),
@@ -89,17 +104,27 @@ func (s *chatStore) history(ctx context.Context, sessionID string) ([]historyIte
 	if err != nil {
 		return nil, err
 	}
+	return parseHistoryItems(out.Items), nil
+}
 
-	history := make([]historyItem, 0, len(out.Items))
-	for _, item := range out.Items {
-		entry := historyItem{}
-		if v, ok := item["input"].(*types.AttributeValueMemberS); ok {
-			entry.Input = v.Value
-		}
-		if v, ok := item["summary"].(*types.AttributeValueMemberS); ok {
-			entry.Summary = v.Value
-		}
-		history = append(history, entry)
+// recentHistory returns up to limit most recent entries, oldest first.
+func (s *chatStore) recentHistory(ctx context.Context, sessionID string, limit int32) ([]historyItem, error) {
+	out, err := s.dynamo.Query(ctx, &dynamodb.QueryInput{
+		TableName:              aws.String(s.tableName),
+		KeyConditionExpression: aws.String("session_id = :sid"),
+		ExpressionAttributeValues: map[string]types.AttributeValue{
+			":sid": &types.AttributeValueMemberS{Value: sessionID},
+		},
+		ScanIndexForward: aws.Bool(false),
+		Limit:            aws.Int32(limit),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	history := parseHistoryItems(out.Items)
+	for i, j := 0, len(history)-1; i < j; i, j = i+1, j-1 {
+		history[i], history[j] = history[j], history[i]
 	}
 	return history, nil
 }
@@ -181,12 +206,27 @@ func main() {
 			return
 		}
 
-		result, err := client.Models.GenerateContent(
-			r.Context(),
-			"gemini-flash-latest",
-			genai.Text(req.Text.Input),
-			nil,
-		)
+		pastHistory, err := store.recentHistory(r.Context(), req.SessionID, 5)
+		if err != nil {
+			log.Println("dynamodb query error:", err)
+		}
+
+		var chatHistory []*genai.Content
+		for _, item := range pastHistory {
+			chatHistory = append(chatHistory,
+				genai.NewContentFromText(item.Input, genai.RoleUser),
+				genai.NewContentFromText(item.Summary, genai.RoleModel),
+			)
+		}
+
+		chat, err := client.Chats.Create(r.Context(), "gemini-flash-latest", nil, chatHistory)
+		if err != nil {
+			log.Println("gemini create chat error:", err)
+			http.Error(w, "failed to generate content", http.StatusInternalServerError)
+			return
+		}
+
+		result, err := chat.SendMessage(r.Context(), genai.Part{Text: req.Text.Input})
 		if err != nil {
 			log.Println("gemini generate content error:", err)
 			http.Error(w, "failed to generate content", http.StatusInternalServerError)
