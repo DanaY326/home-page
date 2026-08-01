@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:8080";
+export const baseUrl =  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
 const SESSION_ID_KEY = "chat_session_id";
 
